@@ -1,0 +1,5 @@
+1. wpa_supplicant config
+2. ezjail
+- rc.conf settings
+- including cloning of loopback device
+- how to manage jails...
