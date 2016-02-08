@@ -1,6 +1,13 @@
 base:
   '*': 
-    - users
+    # - users
     # Only for freebsd master host thinger
-    - ezjail
-    - ports
+    - tuning
+    # - ezjail
+    # Disabled for now. Don't wanna run port update every time
+    # - ports
+    # - sudoers
+    # - salt_master
+    # - pf
+    # - ssh
+    # - jails

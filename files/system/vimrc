@@ -1,0 +1,78 @@
+syntax on
+set background=dark
+
+set smartindent
+set hlsearch
+set incsearch
+set ignorecase smartcase
+set history=100
+set nocompatible
+set nowrap
+set ruler
+set bs=2
+set number
+set backspace=indent,eol,start
+set backup
+set backupdir=~/.vim/tmp
+set autochdir
+set writebackup
+set autoindent
+set smartindent
+set fileformats=unix,dos,mac
+set noerrorbells
+set laststatus=2
+set wildmenu
+set splitbelow
+set splitright
+filetype off
+filetype plugin indent on
+
+augroup vimrc_autocmds
+        autocmd!
+        " highlight characters past column 120
+         autocmd FileType python highlight Excess ctermbg=DarkGrey guibg=Black
+         autocmd FileType python match Excess /\%120v.*/
+         autocmd FileType python set nowrap
+augroup END
+
+
+" I'm prefer spaces to tabs
+set tabstop=4
+set shiftwidth=4
+set expandtab
+
+" Fold
+set foldmethod=indent
+set foldlevel=99
+
+" Easier window navigation
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+map <c-l> <c-w>l
+map <c-h> <c-w>h
+
+autocmd BufWritePost *.py call Flake8()
+
+let g:indent_guides_start_level = 2
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
+
+filetype plugin indent on
+
+" Always show statusline
+set laststatus=2
+"
+" Use 256 colours (Use this setting only if your terminal supports 256
+" colours)
+set t_Co=256
+
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_auto_colors = 0
+let g:indent_guides_guide_size = 1
+let g:indent_guides_start_level = 2
+" au VimEnter * RainbowParenthesesToggle
+" au Syntax * RainbowParenthesesLoadRound
+" au Syntax * RainbowParenthesesLoadSquare
+" au Syntax * RainbowParenthesesLoadBraces
+set wildchar=<Tab> wildmenu wildmode=full

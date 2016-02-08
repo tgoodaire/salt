@@ -38,6 +38,20 @@ net/rsync:
     - options:
       - DOCS: off
 
+# Global conf
+/usr/local/etc/vim:
+  file.directory:
+    - user: root
+    - group: wheel
+    - mode: 755
+    - makedirs: True
+
+/usr/local/etc/vim/vimrc:
+  file.managed:
+    - source: salt://files/system/vimrc
+    - user: root
+    - group: wheel
+
 # User tim
 tim:
    user.present:
@@ -97,5 +111,3 @@ root:
       - wheel
       - operator
     - password: $6$iPteN1DdPYzEcBHy$3H9vW0d41aWFagbmAIVkg/T1JLDWMgIpfdpO3Biyp0dZ4/oCVZHjR.JKKsjWdmPxvQSNB31ryq1U2xTxbiLvt.
-
-

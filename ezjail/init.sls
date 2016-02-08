@@ -1,7 +1,3 @@
-# This state installs the tim user
-# as well as all of my favourite packages
-
-# Packages
 sysutils/ezjail:
   ports.installed
 
@@ -10,6 +6,9 @@ sysutils/ezjail:
     - source: salt://files/system/ezjail.conf
     - user: root
     - group: wheel
+
+ezjail:
+  service.enabled
 
 # Add to /etc/rc.conf
 # cloned_interfaces="lo1"
