@@ -10,3 +10,9 @@ salt_master:
     - reload: True
     - watch:
       - file: /usr/local/etc/salt/master
+
+/etc/rc.conf.d/salt_master:
+  file.managed:
+    - user: root
+    - mode: 0644
+    - source: salt://salt_master/salt_master.template

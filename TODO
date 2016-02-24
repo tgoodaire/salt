@@ -1,5 +1,45 @@
 1. wpa_supplicant config
 2. ezjail
 - rc.conf settings
+  - included template
+  - loop through network.interfaces to get ip,netmask
+  - put alias lines in rc.conf
+- create, delete, update jails
+- try to build like 15 jails or so just for fun, and practice managing them
+
+- next should be setting up some infrastructure
+  - dns servers
+  - monitoring servers
+    - db servers
+    - email servers
+  - secure jail for ssh attack analysis
+    - tripwire
+    - block
+    - portscan attackers
+  - webserver
+  - git
+  - jenkins
+  - loghost with logstash or something
+  - storage server
+  - hacking and penetration server
+  - gaming server (freeciv? nethack?)
+  - development server maybe
+
+- raspberry pi
+  - plugins install
+    - should have my own clones of these repos
+      - i could fix some of the crap
+
+
+
+  
+- environments
+  - dev
+  - qa
+  - staging
+  - prod
+  
+
+
 - including cloning of loopback device
 - how to manage jails...

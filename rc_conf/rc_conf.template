@@ -1,0 +1,27 @@
+# I'm trying to keep my config in /etc/rc.conf.d
+wlans_ath0="wlan0"
+#ifconfig_wlan0="WPA"
+ifconfig_wlan0="WPA dhcp"
+#ifconfig_wlan0="192.168.1.200 netmask 255.255.255.255"
+# FIXME: Loop through a list and generate these IPs
+#ifconfig_wlan0_alias0="inet 192.168.1.201 netmask 255.255.255.255"
+#ifconfig_wlan0_alias1="inet 192.168.1.202 netmask 255.255.255.255"
+#ifconfig_wlan0_alias2="inet 192.168.1.203 netmask 255.255.255.255"
+
+cloned_interfaces="lo1"
+
+sshd_enable="YES"
+ntpd_enable="YES"
+# Set dumpdev to "AUTO" to enable crash dumps, "NO" to disable
+dumpdev="AUTO"
+salt_minion_enable="YES"
+# pf_enable="YES"
+pf_enable="NO"
+gateway_enable="YES"
+fail2ban_enable="YES"
+# ifconfig_wlan0_alias0="192.168.1.201 netmask 255.255.255.255"
+
+# lo1: 127.0.1.1
+# em0: 192.168.1.201
+
+# ezjail-admin create dnsjail 'lo1|127.0.1.1,em0|192.168.1.50'

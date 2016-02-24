@@ -10,9 +10,14 @@ sysutils/ezjail:
 ezjail:
   service.enabled
 
+/etc/rc.conf.d/ezjail:
+  file.managed:
+    - user: root
+    - mode: 0644
+    - source: salt://ezjail/ezjail.template
+
 # Add to /etc/rc.conf
 # cloned_interfaces="lo1"
-# ezjail_enable="YES"
 
 # service netif cloneup
 # service ezjail start
