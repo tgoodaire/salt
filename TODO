@@ -1,11 +1,10 @@
-1. wpa_supplicant config
+1. wpa_supplicant config and finish network config for jails
+
 2. ezjail
-- rc.conf settings
-  - included template
-  - loop through network.interfaces to get ip,netmask
-  - put alias lines in rc.conf
+- ezjail config
 - create, delete, update jails
 - try to build like 15 jails or so just for fun, and practice managing them
+- how to maintain base jail archive thinger
 
 - next should be setting up some infrastructure
   - dns servers
@@ -39,7 +38,15 @@
   - staging
   - prod
   
-
+- updates and pkg management
+  - portsnap fetch
+  - portsnap extract
+  - port upgrade
+  - port install
 
 - including cloning of loopback device
 - how to manage jails...
+
+# Reboot in single user mode
+# Enable TRIM on the filesystem
+tunefs -t enable /dev/ada0p2

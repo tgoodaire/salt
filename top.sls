@@ -1,16 +1,28 @@
+# SO this kind of sucks. Should ensure that if things aren't installed
+# they should be removed...
+# Need to figure out how to lay all of this out.
+# roles:jail
+# roles:saltmaster
+# roles:jailhost
+# base:
+#   'roles:jail':
+#     - match: pillar
+#     - jail
 base:
-  '*': 
-    # Takes forever to run
-    # - users
-    # Only for freebsd master host thinger
-    # - tuning
-    - ezjail
+  '*':
+    - users
+    - sudoers
+    - sshd
+    - motd
+    - rc_conf
+    - network
+    - salt_minion
+
+  'dahmer*': 
+    - tuning
     # Disabled for now. Don't wanna run port update every time
     # - ports
-    # - sudoers
     - salt_master
     # - pf
-    # - ssh
-    - motd
-    # - jails
-    - rc_conf
+    - jails
+    - ezjail

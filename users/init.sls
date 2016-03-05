@@ -59,7 +59,6 @@ tim:
     - shell: /usr/local/bin/zsh
     - home: /home/tim
     - uid: 1001
-    - gid: 1001
     - groups:
       - wheel
     - password: $6$iPteN1DdPYzEcBHy$3H9vW0d41aWFagbmAIVkg/T1JLDWMgIpfdpO3Biyp0dZ4/oCVZHjR.JKKsjWdmPxvQSNB31ryq1U2xTxbiLvt.

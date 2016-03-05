@@ -1,11 +1,17 @@
 ------------------------------------------------------------------------------
 Welcome to {{ grains['fqdn'] }}
 
-Server Stats at a Glance:
-------------------------
-
-OS: {{ grains['osrelease'] }}
+OS: {{ grains['kernel'] }} {{ grains['osrelease'] }}
 Kernel: {{ grains['kernelrelease'] }}
 Memory: {{ grains['mem_total'] }} MB
 
+IP Addresses:
+{% for IP in grains['ipv4'] %}{{ IP }} {% endfor %}
+
+Roles
+TODO
+
+{{ salt['cmd.run']('/usr/games/fortune') }}
+
+(MOTD message generated at: {{ salt['cmd.run']('/bin/date') }})
 ------------------------------------------------------------------------------

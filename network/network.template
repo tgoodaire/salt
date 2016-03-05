@@ -1,0 +1,6 @@
+wlans_ath0="wlan0"
+ifconfig_wlan0="WPA dhcp"
+
+{% for (host,ip) in pillar.get(grains['fqdn'], {}).items() %}
+ifconfig_wlan0_alias{{ loop.index - 1 }}="inet {{ ip }} netmask 255.255.255.0"
+{% endfor %}
