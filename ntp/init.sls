@@ -11,7 +11,8 @@ ntpd:
     - watch:
       - file: /etc/ntp/ntp.conf
 
-ntpdate:
-  service.running:
-    - enable: True
-    - reload: True
+/etc/rc.conf.d/ntp:
+  file.managed:
+    - user: root
+    - mode: 0644
+    - source: salt://ntp/ntp.template

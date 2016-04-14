@@ -29,9 +29,7 @@ sysutils/screen:
   ports.installed
 
 devel/git:
-  ports.installed:
-    - options:
-      - PERL: off
+  ports.installed
 
 net/rsync:
   ports.installed:

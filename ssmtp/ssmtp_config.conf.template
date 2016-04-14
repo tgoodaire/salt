@@ -1,0 +1,5 @@
+root=tgoodaire@gmail.com
+mailhub=smtp.gmail.com:587
+AuthUser=tgoodaire@gmail.com
+AuthPass=vhiufjhdascckmaa
+UseSTARTTLS=YES

@@ -7,6 +7,7 @@
 
 # rc.conf (rc.conf.local?)
 # make.conf
+# sysctl.conf
 # ???
 
 /etc/make.conf:

@@ -1,9 +1,7 @@
-{% for (host,ip) in pillar.get(grains['fqdn'], {}).items() %}
-  {% if ip not in grains['ip4_interfaces'].wlan0 %}
-ifconfig wlan0 {{ ip }} netmask 255.255.255.0 alias:
+{% for host,hostdetail in pillar.get('hosts', {}).items() %}{% if 'jailhost' in hostdetail.keys() and hostdetail['jailhost'] == grains['fqdn'] %}
+ifconfig wlan0 {{ hostdetail['ip'] }} netmask 255.255.255.0 alias:
   cmd.run
-{% endif %}
-{% endfor %}
+{% endif %}{% endfor %}
 
 /etc/rc.conf.d/network:
   file.managed:

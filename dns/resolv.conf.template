@@ -1,0 +1,8 @@
+search killaz.localdomain
+{% for (host,hostdetail) in pillar.get('hosts', {}).items() -%}
+{% if 'roles' in hostdetail -%}
+{% if 'dnsmasq' in hostdetail['roles'] -%}
+nameserver {{ hostdetail['ip'] }}
+{% endif -%}
+{% endif -%}
+{% endfor -%}

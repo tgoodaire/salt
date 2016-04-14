@@ -1,6 +1,8 @@
-1. wpa_supplicant config and finish network config for jails
+0. sysctl config
+(allow raw sockets in jails)
+already in files
 
-2. ezjail
+1. ezjail
 - ezjail config
 - create, delete, update jails
 - try to build like 15 jails or so just for fun, and practice managing them

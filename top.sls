@@ -8,21 +8,30 @@
 #   'roles:jail':
 #     - match: pillar
 #     - jail
-base:
-  '*':
-    - users
-    - sudoers
-    - sshd
-    - motd
-    - rc_conf
-    - network
-    - salt_minion
+#base:
+#  '*':
+#    - users
+#    - sudoers
+#    - sshd
+#    - motd
+#    - rc_conf
+#    - network
+#    - salt_minion
 
-  'dahmer*': 
-    - tuning
+#  'dahmer*': 
+#    - tuning
     # Disabled for now. Don't wanna run port update every time
     # - ports
-    - salt_master
-    # - pf
-    - jails
-    - ezjail
+#    - salt_master
+    #- pf
+#    - jails
+#    - ezjail
+#    - ntp
+
+base: 
+  'os:FreeBSD':
+    - match: grain
+    - freebsd-defaults
+           
+  '*':
+    - roles

@@ -1,17 +1,23 @@
 ------------------------------------------------------------------------------
-Welcome to {{ grains['fqdn'] }}
+Welcome to {{ grains['nodename'] }}
 
 OS: {{ grains['kernel'] }} {{ grains['osrelease'] }}
 Kernel: {{ grains['kernelrelease'] }}
 Memory: {{ grains['mem_total'] }} MB
 
 IP Addresses:
-{% for IP in grains['ipv4'] %}{{ IP }} {% endfor %}
+{% for IP in grains['ipv4'] -%}
+  - {{ IP }}
+{% endfor -%}
 
 Roles
-TODO
-
-{{ salt['cmd.run']('/usr/games/fortune') }}
+{% for (host,hostdetail) in pillar.get('hosts', {}).items() -%}
+{% if host == grains['nodename'] and hostdetail.has_key('roles') -%}
+{% for role in hostdetail['roles'] -%}
+  - {{ role }}
+{% endfor -%}
+{% endif -%}
+{% endfor -%}
 
 (MOTD message generated at: {{ salt['cmd.run']('/bin/date') }})
 ------------------------------------------------------------------------------

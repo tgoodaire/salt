@@ -1,0 +1,5 @@
+::1			    localhost localhost.my.domain
+127.0.0.1		localhost localhost.my.domain
+{% for (host,hostdetail) in pillar.get('hosts', {}).items() -%}
+{{ hostdetail['ip'] }} {{ host }}		{{ host }}.killaz.localdomain
+{% endfor -%}
