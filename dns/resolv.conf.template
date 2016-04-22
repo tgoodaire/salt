@@ -6,3 +6,4 @@ nameserver {{ hostdetail['ip'] }}
 {% endif -%}
 {% endif -%}
 {% endfor -%}
+nameserver 8.8.8.8

@@ -1,4 +1,4 @@
-{% for host,hostdetail in pillar.get('hosts', {}).items() %}{% if 'jailhost' in hostdetail.keys() and hostdetail['jailhost'] == grains['fqdn'] %}
+{% for host,hostdetail in pillar.get('hosts', {}).items() %}{% if 'jailhost' in hostdetail.keys() and hostdetail['jailhost'] == grains['host'] %}
 ifconfig wlan0 {{ hostdetail['ip'] }} netmask 255.255.255.0 alias:
   cmd.run
 {% endif %}{% endfor %}

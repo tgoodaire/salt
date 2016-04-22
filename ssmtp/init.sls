@@ -9,8 +9,8 @@ sendmail:
   service.running:
     - enable: False
 
-mail/ssmtp:
-  ports.installed
+ssmtp:
+  pkg.installed
 
 /usr/local/etc/ssmtp/ssmtp.conf:
   file.managed:
@@ -26,4 +26,14 @@ mail/ssmtp:
     - group: wheel
     - template: jinja
 
+/etc/aliases:
+  file.managed:
+    - source: salt://ssmtp/aliases.template
+    - user: root
+    - group: wheel
+    - template: jinja
 
+newaliases:
+  cmd.wait:
+    - watch:
+      - file: /etc/aliases

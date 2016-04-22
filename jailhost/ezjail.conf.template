@@ -45,6 +45,10 @@ ezjail_devfs_enable="YES"
 ezjail_devfs_ruleset="devfsrules_jail"
 ezjail_procfs_enable="YES"
 ezjail_fdescfs_enable="YES"
+ezjail_tmpfs_enable="YES"
+ezjail_parameters="children.max=10 \
+allow.mount allow.mount.tmpfs allow.mount.devfs allow.mount.procfs allow.mount.zfs allow.mount.nullfs \
+allow.raw_sockets allow.socket_af allow.sysvipc allow.chflags enforce_statfs=1 ip6=inherit ip4=inherit"
 
 # ZFS options
 

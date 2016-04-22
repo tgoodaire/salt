@@ -7,4 +7,5 @@ include:
   - network
   - dns
   - ssmtp
+  - pkg_client
   - salt_minion

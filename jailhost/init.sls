@@ -4,8 +4,8 @@
     - mode: 0644
     - source: salt://jailhost/jail.template
 
-sysutils/ezjail:
-  ports.installed
+ezjail:
+  pkg.installed
 
 /usr/local/etc/ezjail.conf:
   file.managed:
@@ -13,8 +13,9 @@ sysutils/ezjail:
     - user: root
     - group: wheel
 
-ezjail:
-  service.enabled
+ezjail_running:
+  service.enabled:
+    - name: ezjail
 
 /etc/rc.conf.d/ezjail:
   file.managed:
@@ -23,7 +24,7 @@ ezjail:
     - source: salt://jailhost/ezjail.template
 
 {% for (host,hostdetail) in pillar.get('hosts', {}).items() %}
-{% if 'jailhost' in hostdetail.keys() and hostdetail['jailhost'] == grains['fqdn'] %}
+{% if 'jailhost' in hostdetail.keys() and hostdetail['jailhost'] == grains['host'] %}
 check_jail_{{ host }}:
   module.run:
     - name: jail.status

@@ -7,15 +7,9 @@ NO_PROFILE=YES
 NO_WERROR=
 WERROR=
 
-## Mirror override
-#MASTER_SITE_OVERRIDE = "ftp://ftp.at.freebsd.org/pub/FreeBSD/ports/distfiles/"
-#MASTER_SITE_OVERRIDE = "ftp://ftp.de.freebsd.org/pub/FreeBSD/ports/distfiles/"
-
 ## Performance
-# Intel Ivy Bridge CPU
-#CPUTYPE?= core-avx-i
-# Intel Haswell CPU
-#CPUTYPE?= core-avx2
+CPUTYPE?= core2
+
 # General
 MAKE_JOBS_NUMBER?=4
 OPTIMIZED_CFLAGS=YES
@@ -25,12 +19,13 @@ WITH_OPTIMIZED_CFLAGS=YES
 
 ## Server options 
 ## (headless, no GUI, no X11, no sound, ..)
-WITHOUT_X11=YES
 WITHOUT_CUPS=yes
 WITHOUT_FONTCONFIG=yes
+NOPORTDOCS=yes
 WITHOUT=DOCS
 WITHOUT_MODULES = sound ntfs linux
-OPTIONS_UNSET= CUPS NLS DOCS
+OPTIONS_UNSET= CUPS NLS DOCS X11 EXAMPLES 
+OPTIONS_SET= CONSOLE
 
 # Disable sendmail!
 NO_SENDMAIL=true
@@ -38,3 +33,7 @@ NO_SENDMAIL=true
 # Fresh OpenSSL from Ports
 WITH_OPENSSL_PORT=YES
 
+WITHOUT_X11=yes
+WITHOUT_X=yes
+WITH_X=NO
+ENABLE_GUI=NO

@@ -1,0 +1,24 @@
+; This Synth configuration file is automatically generated
+; Take care when hand editing!
+
+[Global Configuration]
+profile_selected= LiveSystem
+
+[LiveSystem]
+Operating_system= FreeBSD
+Directory_packages= /var/synth/live_packages
+Directory_repository= /var/synth/live_packages/All
+Directory_portsdir= /usr/ports
+Directory_options= /var/db/ports
+Directory_distfiles= /var/synth/distfiles
+Directory_buildbase= /usr/obj/synth-live
+Directory_logs= /var/log/synth
+Directory_ccache= disabled
+Directory_system= /
+Number_of_builders= 2
+Max_jobs_per_builder= 2
+Tmpfs_workdir= true
+Tmpfs_localbase= true
+Display_with_ncurses= true
+leverage_prebuilt= false
+

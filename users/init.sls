@@ -1,40 +1,23 @@
 # This state installs the tim user
 # as well as all of my favourite packages
-
-# Packages
-editors/vim:
-  ports.installed:
-    - options:
-      - DEFAULT_VIMRC: off
-      - PERL: off
-      - PYTHON: off
-      - RUBY: off
-      - TCL: off
-      - GTK2: off
-      - CONSOLE: on
-
 shells/zsh:
-  ports.installed:
-    - options:
-      - DOCS: off
-      - EXAMPLES: off
+  pkg.installed
+
+vim:
+  pkg.installed
 
 security/sudo:
-  ports.installed:
-    - options:
-      - DOCS: off
-      - INSULTS: on
+  pkg.installed
 
-sysutils/screen:
-  ports.installed
+screen:
+  pkg.installed
 
-devel/git:
-  ports.installed
+# FIXME: Only on jailhost
+#git:
+#  pkg.installed
 
-net/rsync:
-  ports.installed:
-    - options:
-      - DOCS: off
+#rsync:
+#  pkg.installed
 
 # Global conf
 /usr/local/etc/vim:
@@ -100,7 +83,7 @@ tim:
 root:
   user.present:
     - fullname: Salty Root
-    - shell: /usr/local/bin/zsh
+    - shell: /bin/sh
     - home: /root
     - uid: 0
     - gid: 0

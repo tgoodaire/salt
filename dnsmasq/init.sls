@@ -1,5 +1,5 @@
-dns/dnsmasq:
-  ports.installed
+dnsmasq:
+  pkg.installed
 
 /usr/local/etc/dnsmasq.conf.d:
   file.directory:
@@ -29,10 +29,11 @@ dns/dnsmasq:
     - group: wheel
     - template: jinja
 
-dnsmasq:
+dnsmasq_running:
   service.running:
     - enable: True
     - restart: True
+    - name: dnsmasq
     - watch:
       - file: /usr/local/etc/dnsmasq.conf
       - file: /usr/local/etc/dnsmasq.conf.d/hosts.conf
