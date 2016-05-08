@@ -1,0 +1,23 @@
+user www;
+worker_processes  1;
+error_log /var/log/nginx-error.log info;
+
+events {
+    worker_connections  1024;
+}
+
+http {
+    auth_basic "Restricted Access";
+    auth_basic_user_file /usr/local/etc/nginx/htpasswd.users;
+
+    server {
+        listen                80 ;
+        server_name           log;
+        access_log            /var/log/nginx/kibana.log;
+
+        location / {
+            root  /usr/local/share/kibana-3.1.0;
+            index  index.html  index.htm;
+        }
+    }
+}

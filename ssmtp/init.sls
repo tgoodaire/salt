@@ -10,7 +10,7 @@ sendmail:
     - enable: False
 
 ssmtp:
-  pkg.installed
+  pkg.latest
 
 /usr/local/etc/ssmtp/ssmtp.conf:
   file.managed:

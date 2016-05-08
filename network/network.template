@@ -1,6 +1,6 @@
 {% set i=0 -%}
 {% for host,hostdetail in pillar.get('hosts', {}).items() -%}
-{% if 'jailhost' in hostdetail.keys() and hostdetail['jailhost'] == grains['fqdn'] -%}
+{% if 'jailhost' in hostdetail.keys() and hostdetail['jailhost'] == grains['host'] -%}
 ifconfig_wlan0_alias{{ i }}="inet {{ hostdetail['ip'] }} netmask 255.255.255.0"
 {% set i=i+1 -%}
 {% endif -%}

@@ -1,0 +1,24 @@
+<source>
+  type syslog
+  port 5140
+  tag  system
+</source>
+
+<match system.*.*>
+  type record_reformer
+  tag elasticsearch
+  facility ${tag_parts[1]}
+  severity ${tag_parts[2]}
+</match>
+
+<match elasticsearch>
+  type copy
+  <store>
+    type stdout
+  </store>
+  <store>
+    type elasticsearch
+    logstash_format true
+    flush_interval 5s #debug
+  </store>
+</match>

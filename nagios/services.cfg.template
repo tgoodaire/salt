@@ -1,0 +1,104 @@
+###############################################################################
+###############################################################################
+#
+# SERVICE DEFINITIONS
+#
+###############################################################################
+###############################################################################
+#
+define service {
+    name service_template
+    register 0
+    max_check_attempts 5
+    normal_check_interval 5
+    retry_check_interval 3
+    notification_interval 300
+    check_period 24x7
+    notification_period 24x7
+}
+
+
+define service{
+    use                             service_template
+    hostgroup_name                  freebsd-servers
+    service_description             ssh
+    check_command                   check_ssh
+}
+
+define service{
+    use                             service_template
+    hostgroup_name                  freebsd-servers
+    service_description             zombie procs
+    check_command                   check_nrpe!check_zombie_procs
+}
+
+define service{
+    use                             service_template
+    hostgroup_name                  jailhosts
+    service_description             load
+    check_command                   check_nrpe!check_load
+}
+
+define service{
+    use                             service_template
+    hostgroup_name                  jailhosts
+    service_description             swap
+    check_command                   check_nrpe!check_swap
+}
+
+define service{
+    use                             service_template
+    hostgroup_name                  jailhosts
+    service_description             ntp
+    check_command                   check_nrpe!check_ntp_time
+}
+
+#FIXME: Dns servers getting hammered...
+#define service{
+#    use                             service_template
+#    hostgroup_name                  freebsd-servers
+#    service_description             ns1 dns resolution
+#    check_command                   check_nrpe!check_local_dns1
+#}
+
+#define service{
+#    use                             service_template
+#    hostgroup_name                  freebsd-servers
+#    service_description             ns2 dns resolution
+#    check_command                   check_nrpe!check_local_dns2
+#}
+
+define service{
+    use                             service_template
+    hostgroup_name                  jailhosts
+    service_description             disk
+    check_command                   check_nrpe!check_root
+}
+
+define service{
+    use                             service_template
+    hostgroup_name                  jailhosts
+    service_description             ntp
+    check_command                   check_nrpe!check_ntp_time
+}
+
+define service{
+    use                             service_template
+    hostgroup_name                  freebsd-servers
+    service_description             google
+    check_command                   check_nrpe!check_google
+}
+
+define service{
+    use                             service_template
+    hostgroup_name                  pgservers
+    service_description             postgres
+    check_command                   check_pgsql
+}
+
+define service{
+    use                             service_template
+    hostgroup_name                  nginxservers
+    service_description             nginx
+    check_command                   check_http
+}

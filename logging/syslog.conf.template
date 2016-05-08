@@ -1,0 +1,27 @@
+*.err;kern.debug;auth.notice;mail.crit          /dev/console
+*.notice;kern.debug;lpr.info;mail.crit;news.err /var/log/messages
+security.*                                      /var/log/security
+mail.info                                       /var/log/maillog
+cron.*                                          /var/log/cron
+*.err                                           root
+*.notice;news.err                               root
+*.alert                                         root
+*.emerg                                         *
+console.info                                    /var/log/console.log
+*.*                                             /var/log/all.log
+
+{% for (host,hostdetail) in pillar.get('hosts', {}).items() -%}
+{% if 'roles' in hostdetail.keys() -%}
+{% for (i) in hostdetail.get('roles') -%}
+{% if i=='loghost' -%}
+*.*                                             @{{ host }}.killaz.localdomain
+{% endif -%}
+{% if i=='loghost' and host==grains['host'] %}
+{% for (host,hostdetail) in pillar.get('hosts', {}).items() -%}
++{{ host }}.killaz.localdomain
+*.*                                             /var/log/{{ host }}.log
+{% endfor -%}
+{% endif -%}
+{% endfor -%}
+{% endif -%}
+{% endfor -%}

@@ -1,0 +1,3 @@
+logstash_enable="YES"
+logstash_mode="standalone"
+logstash_log="YES"

@@ -5,7 +5,7 @@
     - source: salt://jailhost/jail.template
 
 ezjail:
-  pkg.installed
+  pkg.latest
 
 /usr/local/etc/ezjail.conf:
   file.managed:

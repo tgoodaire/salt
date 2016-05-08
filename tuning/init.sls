@@ -10,13 +10,13 @@
 # ???
 
 ca_root_nss:
-  pkg.installed
+  pkg.latest
 
 openssl:
-  pkg.installed
+  pkg.latest
     
 svnup:
-  pkg.installed
+  pkg.latest
 
 /usr/local/etc/svnup.conf:
   file.managed:

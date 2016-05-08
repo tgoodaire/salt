@@ -1,8 +1,8 @@
 synth:
-  pkg.installed
+  pkg.latest
 
 nginx:
-  pkg.installed
+  pkg.latest
 
 /usr/local/etc/nginx/nginx.conf:
   file.managed:
@@ -11,11 +11,35 @@ nginx:
     - source: salt://pkg_server/nginx.conf.template
     - template: jinja
 
+/var/db/ports/editors_vim:
+  file.directory:
+    - user: root
+    - mode: 0644
+    - makedirs: True
+
 /var/db/ports/editors_vim/options:
   file.managed:
     - user: root
     - mode: 0644
     - source: salt://pkg_server/editors_vim_options.template
+
+/var/db/ports/java_openjdk8:
+  file.directory:
+    - user: root
+    - mode: 0644
+    - makedirs: True
+
+/var/db/ports/java_openjdk8/options:
+  file.managed:
+    - user: root
+    - mode: 0644
+    - source: salt://pkg_server/java_openjdk8_options.template
+
+/var/db/ports/graphics_cairo/options:
+  file.managed:
+    - user: root
+    - mode: 0644
+    - source: salt://pkg_server/graphics_cairo_options.template
 
 /etc/rc.conf.d/nginx:
   file.managed:
@@ -24,8 +48,12 @@ nginx:
     - source: salt://pkg_server/nginx.template
 
 nginx_running:
-  service.enabled:
+  service.running:
     - name: nginx
+    - enable: True
+    - restart: True
+    - watch:
+      - file: /usr/local/etc/nginx/nginx.conf
 
 /usr/local/etc/synth:
   file.directory:

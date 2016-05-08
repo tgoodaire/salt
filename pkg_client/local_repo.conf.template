@@ -1,5 +1,5 @@
 local: {
-  url: "pkg+http://ramirez",
+  url: "pkg+http://pkg",
   mirror_type: "srv",
   enabled: yes,
   priority: 100

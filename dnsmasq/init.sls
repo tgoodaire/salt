@@ -1,5 +1,5 @@
 dnsmasq:
-  pkg.installed
+  pkg.latest
 
 /usr/local/etc/dnsmasq.conf.d:
   file.directory:
@@ -31,7 +31,6 @@ dnsmasq:
 
 dnsmasq_running:
   service.running:
-    - enable: True
     - restart: True
     - name: dnsmasq
     - watch:

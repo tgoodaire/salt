@@ -5,6 +5,8 @@ local=/killaz.localdomain/
 listen-address={{ grains['ipv4'][0] }}
 bind-interfaces
 
+dns-forward-max=5000
+
 server=8.8.8.8
 server=208.67.222.222
 server=208.67.220.220
@@ -12,3 +14,9 @@ server=208.67.220.220
 no-hosts
 addn-hosts=/usr/local/etc/dnsmasq.conf.d/hosts.conf
 addn-hosts=/usr/local/etc/dnsmasq.conf.d/extrahosts.conf
+
+{% for (host,hostdetail) in pillar.get('hosts', {}).items() -%}
+{% if 'cnames' in hostdetail.keys() %}
+cname={{ hostdetail['cnames'] }},{{ host }}
+{% endif -%}
+{% endfor -%}

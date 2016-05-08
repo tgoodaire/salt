@@ -12,26 +12,15 @@ security/sudo:
 screen:
   pkg.installed
 
-# FIXME: Only on jailhost
-#git:
-#  pkg.installed
+git:
+  pkg.installed
 
+# FIXME: Only on jailhost
 #rsync:
 #  pkg.installed
-
-# Global conf
-/usr/local/etc/vim:
-  file.directory:
-    - user: root
-    - group: wheel
-    - mode: 755
-    - makedirs: True
-
-/usr/local/etc/vim/vimrc:
-  file.managed:
-    - source: salt://files/system/vimrc
-    - user: root
-    - group: wheel
+#
+#strace:
+#  pkg.installed
 
 # User tim
 tim:
@@ -57,6 +46,7 @@ tim:
     - user: tim
     - group: tim
 
+#FIXME: Install or update oh-my-zsh with git
 /home/tim/.oh-my-zsh:
   file.recurse:
     - source: salt://files/tim/oh-my-zsh
@@ -78,6 +68,11 @@ tim:
     - source: salt://files/tim/hosts
     - user: tim
     - group: tim
+
+/etc/periodic.conf:
+  file.managed:
+    - source: salt://files/system/periodic.conf
+    - user: root
 
 # User root
 root:

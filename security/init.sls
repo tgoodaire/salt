@@ -1,5 +1,5 @@
 sshguard:
-  pkg.installed
+  pkg.latest
 
 sshguard_running:
   service.running:
@@ -18,3 +18,4 @@ sshguard_running:
     - user: root
     - mode: 0644
     - source: salt://security/sshguard_whitelist.template
+    - template: jinja

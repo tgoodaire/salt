@@ -31,7 +31,7 @@ already in files
     - should have my own clones of these repos
       - i could fix some of the crap
 
-
+- fstab on host
 
   
 - environments
@@ -52,3 +52,8 @@ already in files
 # Reboot in single user mode
 # Enable TRIM on the filesystem
 tunefs -t enable /dev/ada0p2
+
+oh-my-zsh updating
+- local github repo with mirrors of shit that I use
+
+

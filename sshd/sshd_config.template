@@ -18,6 +18,8 @@
 #AddressFamily any
 #ListenAddress 0.0.0.0
 #ListenAddress ::
+#ListenAddress {{ grains['ipv4'][0] }}
+
 
 # The default requires explicit activation of protocol 1
 #Protocol 2

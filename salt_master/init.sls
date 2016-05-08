@@ -1,6 +1,6 @@
 /usr/local/etc/salt/master:
   file.managed:
-    - source: salt://files/system/salt_master.conf
+    - source: salt://salt_master/master.template
     - user: root
     - group: wheel
 

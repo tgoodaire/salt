@@ -10,3 +10,10 @@
     - mode: 0644
     - source: salt://pkg_client/local_repo.conf.template
     - template: jinja
+
+#FIXME: Sort out what to do about upstream freebsd repo
+#/usr/local/etc/pkg/repos/FreeBSD.conf:
+#  file.managed:
+#    - user: root
+#    - mode: 0644
+#    - source: salt://pkg_client/FreeBSD.conf.template

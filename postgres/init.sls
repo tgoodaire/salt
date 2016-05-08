@@ -1,5 +1,5 @@
 postgresql95-server:
-  pkg.installed
+  pkg.latest
 
 /etc/rc.conf.d/postgres:
   file.managed:
@@ -27,6 +27,9 @@ postgresql:
     - watch:
       - file: /usr/local/pgsql/data/postgresql.conf
       - file: /usr/local/pgsql/data/pg_hba.conf
+
+# FIXME: Add nagios user with password nagios
+
 
 #FIXME: Need to add export jail_fish_parameters="allow.sysvipc=1"
 #to jail config or postgres won't start

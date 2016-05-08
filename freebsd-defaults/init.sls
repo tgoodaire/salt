@@ -1,11 +1,13 @@
 include:
+  - logging
+  - rc_conf
+  - network
+  - dns
+  - pkg_client
+  - salt_minion
   - users
   - sudoers
   - sshd
   - motd
-  - rc_conf
-  - network
-  - dns
   - ssmtp
-  - pkg_client
-  - salt_minion
+  - nrpe
