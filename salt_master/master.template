@@ -1,15 +1,15 @@
 interface: 192.168.1.200
-hash_type: SHA256
+hash_type: sha256
+worker_threads: 15
+
+fileserver_backend:
+  - roots
 
 file_roots:
   base:
     - /srv/salt/
-  dev:
-    - /srv/salt/dev/services
-    - /srv/salt/dev/states
-  prod:
-    - /srv/salt/prod/services
-    - /srv/salt/prod/states
+    - /srv/formulas/postgres-formula
+    - /srv/formulas/nginx-formula
 
 pillar_roots:
   base:

@@ -7,7 +7,7 @@
 salt_master:
   service.running:
     - enable: True
-    - reload: True
+    - restart: True
     - watch:
       - file: /usr/local/etc/salt/master
 

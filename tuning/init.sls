@@ -8,15 +8,19 @@
 # rc.conf (rc.conf.local?)
 # sysctl.conf
 # ???
+# kldload tmpfs
 
 ca_root_nss:
-  pkg.latest
+  pkg.latest:
+    - fromrepo: local
 
 openssl:
-  pkg.latest
-    
+  pkg.latest:
+    - fromrepo: local
+
 svnup:
-  pkg.latest
+  pkg.latest:
+    - fromrepo: local
 
 /usr/local/etc/svnup.conf:
   file.managed:

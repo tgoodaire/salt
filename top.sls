@@ -28,7 +28,7 @@
 #    - ezjail
 #    - ntp
 
-base: 
+base:
   'os:FreeBSD':
     - match: grain
     - freebsd-defaults

@@ -102,3 +102,10 @@ define service{
     service_description             nginx
     check_command                   check_http
 }
+
+define service{
+    use                             service_template
+    hostgroup_name                  nginxauthservers
+    service_description             nginxauth
+    check_command                   check_http_auth
+}

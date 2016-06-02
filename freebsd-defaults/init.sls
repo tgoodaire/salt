@@ -1,4 +1,5 @@
 include:
+  - grains
   - logging
   - rc_conf
   - network

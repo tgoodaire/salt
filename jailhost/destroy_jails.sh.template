@@ -1,0 +1,10 @@
+#!/usr/local/bin/zsh
+
+for i in `ls /usr/jails | grep -v basejail | grep -v ezjail_archives | grep -v flavours | grep -v newjail`
+do
+echo $i
+sudo service ezjail stop $i
+sudo umount -f /data/$i
+sudo ezjail-admin delete -wf $i
+sudo salt-key -d $i 
+done

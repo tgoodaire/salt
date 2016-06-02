@@ -1,5 +1,6 @@
 sshguard:
-  pkg.latest
+  pkg.latest:
+    - fromrepo: local
 
 sshguard_running:
   service.running:

@@ -1,14 +1,18 @@
 nagios4:
-  pkg.latest
+  pkg.latest:
+    - fromrepo: local
 
 nginx:
-  pkg.installed
+  pkg.latest:
+    - fromrepo: local
 
 php56:
-  pkg.installed
+  pkg.latest:
+    - fromrepo: local
 
 fcgiwrap:
-  pkg.installed
+  pkg.latest:
+    - fromrepo: local
 
 /var/log:
   file.directory:
@@ -41,59 +45,64 @@ fcgiwrap:
     - mode: 0644
     - source: salt://nagios/php-fpm.conf.template
 
+/usr/local/etc/nagios:
+  file.directory:
+    - user: root
+    - mode: 0755
+
 /usr/local/etc/nagios/nagios.cfg:
   file.managed:
     - user: root
-    - mode: 0644
+    - mode: 0755
     - source: salt://nagios/nagios.cfg.template
 
 /usr/local/etc/nagios/cgi.cfg:
   file.managed:
     - user: root
-    - mode: 0644
+    - mode: 0755
     - source: salt://nagios/cgi.cfg.template
 
 /usr/local/etc/nagios/resource.cfg:
   file.managed:
     - user: root
-    - mode: 0644
+    - mode: 0755
     - source: salt://nagios/resource.cfg.template
 
 /usr/local/etc/nagios/objects/commands.cfg:
   file.managed:
     - user: root
-    - mode: 0644
+    - mode: 0755
     - source: salt://nagios/commands.cfg.template
 
 /usr/local/etc/nagios/objects/resource.cfg:
   file.managed:
     - user: root
-    - mode: 0644
+    - mode: 0755
     - source: salt://nagios/resource.cfg.template
 
 /usr/local/etc/nagios/objects/hosts.cfg:
   file.managed:
     - user: root
-    - mode: 0644
+    - mode: 0755
     - source: salt://nagios/hosts.cfg.template
     - template: jinja
 
 /usr/local/etc/nagios/objects/contacts.cfg:
   file.managed:
     - user: root
-    - mode: 0644
+    - mode: 0755
     - source: salt://nagios/contacts.cfg.template
 
 /usr/local/etc/nagios/objects/templates.cfg:
   file.managed:
     - user: root
-    - mode: 0644
+    - mode: 0755
     - source: salt://nagios/templates.cfg.template
 
 /usr/local/etc/nagios/objects/services.cfg:
   file.managed:
     - user: root
-    - mode: 0644
+    - mode: 0755
     - source: salt://nagios/services.cfg.template
 
 /usr/local/etc/nginx/htpasswd:

@@ -1,8 +1,11 @@
-synth:
-  pkg.latest
+#include:
+#  - nginx
 
 nginx:
   pkg.latest
+
+#libxslt:
+#  pkg.latest
 
 /usr/local/etc/nginx/nginx.conf:
   file.managed:
@@ -35,6 +38,12 @@ nginx:
     - mode: 0644
     - source: salt://pkg_server/java_openjdk8_options.template
 
+/var/db/ports/graphics_cairo:
+  file.directory:
+    - user: root
+    - mode: 0644
+    - makedirs: True
+
 /var/db/ports/graphics_cairo/options:
   file.managed:
     - user: root
@@ -61,11 +70,35 @@ nginx_running:
     - mode: 0644
     - makedirs: True
 
+/data/synth:
+  file.directory:
+    - user: www
+    - mode: 0755
+    - makedirs: True
+    - recurse:
+      - user
+
+/var/synth:
+  file.symlink:
+    - user: www
+    - mode: 0755
+    - target: /data/synth
+
 /var/synth/distfiles:
   file.directory:
-    - user: root
-    - mode: 0644
+    - user: www
+    - mode: 0755
     - makedirs: True
+    - recurse:
+      - user
+
+/var/synth/live_packages:
+  file.directory:
+    - user: www
+    - mode: 0755
+    - makedirs: True
+    - recurse:
+      - user
 
 /usr/local/etc/synth/synth.ini:
   file.managed:
@@ -79,24 +112,8 @@ nginx_running:
     - mode: 0644
     - source: salt://pkg_server/make.conf.template
 
-/etc/make.conf:
-  file.managed:
-    - user: root
-    - mode: 0644
-    - source: salt://pkg_server/make.conf.template
-
-#poudriere ports -c:
-#  cmd.run:
-#    - unless: ls /usr/local/poudriere/ports/default/Makefile
-
-#poudriere ports -u:
-#  cmd.run:
-#    - require: ls /usr/local/poudriere/ports/default/Makefile
-#
-#poudriere jail -c -j buildhost -v 10.3-RELEASE:
-#  cmd.run:
-#    - require:
-#      - file: /usr/local/etc/poudriere.conf
+synth:
+  pkg.latest
 
 /usr/local/etc/buildlist:
   file.managed:
@@ -107,21 +124,14 @@ nginx_running:
 /usr/local/etc/pkg/repos/00_synth.conf:
   file.absent
 
-#synth just-build /usr/local/etc/build.list:
-#  cmd.run
+/data:
+  file.directory:
+    - user: www
+    - mode: 0755
+    - makedirs: True
+    - recurse:
+      - user
 
-# Update ports
-# Create jail
-# Set options for packages
-# Generate package list
-# Build all
-# Kill jail
-# mount this:
-# /var/db/ports  /usr/local/etc/poudriere.d/options nullfs rw 0 0
-
-# On clients
-# Create /usr/local/etc/pkg/repos/custom.conf
-# custom: {
-#   url: "http://pkg_host/whatever",
-#   enabled: yes,
-# }
+Lame_chown:
+  cmd.run:
+    - name: "chmod -R 755 /data"

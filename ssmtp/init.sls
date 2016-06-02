@@ -6,11 +6,11 @@
     - template: jinja
 
 sendmail:
-  service.running:
-    - enable: False
+  service.dead
 
 ssmtp:
-  pkg.latest
+  pkg.latest:
+    - fromrepo: local
 
 /usr/local/etc/ssmtp/ssmtp.conf:
   file.managed:

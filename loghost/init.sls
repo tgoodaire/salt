@@ -1,30 +1,50 @@
+ruby:
+  pkg.latest:
+    - fromrepo: local
+
+rbenv:
+  pkg.latest:
+    - fromrepo: local
+
+rubygem-tzinfo:
+  pkg.latest:
+    - fromrepo: local
+
+tzinfo-data:
+  gem.installed
+
 elasticsearch2:
-  pkg.installed
+  pkg.latest:
+    - fromrepo: local
 
 kibana45:
-  pkg.installed
+  pkg.latest:
+    - fromrepo: local
 
-#nginx:
-#  pkg.installed
-
-logstash:
-  pkg.installed
+nginx:
+  pkg.latest:
+    - fromrepo: local
 
 rubygem-fluentd:
-  pkg.installed
+  pkg.latest:
+    - fromrepo: local
 
-{% for (host,hostdetail) in pillar.get('hosts', {}).items() -%}
-/var/log/{{ host }}.log:
-  file.managed:
-    - user: root
-    - mode: 0640
-{% endfor %}
+rubygem-string-scrub:
+  pkg.latest:
+    - fromrepo: local
 
-/etc/rc.conf.d/logstash:
-  file.managed:
-    - user: root
-    - mode: 0644
-    - source: salt://loghost/logstash.template
+fluent-plugin-string-scrub:
+  gem.installed
+
+string-scrub:
+  gem.installed:
+    - version: 0.0.5
+
+fluent-plugin-elasticsearch:
+  gem.installed
+
+fluent-plugin-record-reformer:
+  gem.installed
 
 /etc/rc.conf.d/elasticsearch:
   file.managed:
@@ -38,11 +58,11 @@ rubygem-fluentd:
     - mode: 0644
     - source: salt://loghost/kibana.template
 
-#/etc/rc.conf.d/nginx:
-#  file.managed:
-#    - user: root
-#    - mode: 0644
-#    - source: salt://loghost/nginx.template
+/etc/rc.conf.d/nginx:
+  file.managed:
+    - user: root
+    - mode: 0644
+    - source: salt://loghost/nginx.template
 
 /etc/rc.conf.d/fluentd:
   file.managed:
@@ -69,11 +89,11 @@ rubygem-fluentd:
     - mode: 0644
     - source: salt://loghost/logging.yml.template
 
-/usr/local/etc/logstash/logstash.conf:
-  file.managed:
+/usr/local/etc/fluentd:
+  file.directory:
     - user: root
     - mode: 0644
-    - source: salt://loghost/logstash.conf.template
+    - mkdirs: True
 
 /usr/local/etc/fluentd/fluent.conf:
   file.managed:
@@ -82,25 +102,18 @@ rubygem-fluentd:
     - source: salt://loghost/fluent.conf.template
     - template: jinja
 
-#/usr/local/etc/nginx/nginx.conf:
-#  file.managed:
-#    - user: root
-#    - mode: 0644
-#    - source: salt://loghost/nginx.conf.template
+/usr/local/etc/nginx:
+  file.directory:
+    - user: root
+    - mode: 0644
+    - mkdirs: True
 
-#/usr/local/etc/nginx/htpasswd.users:
-#  file.managed:
-#    - user: root
-#    - mode: 0644
-#    - source: salt://loghost/htpasswd.users.template
-
-logstash_running:
-  service.running:
-    - restart: True
-    - name: logstash
-    - watch:
-      - file: /etc/rc.conf.d/logstash
-      - file: /usr/local/etc/logstash/logstash.conf
+/usr/local/etc/nginx/nginx.conf:
+  file.managed:
+    - user: root
+    - mode: 0644
+    - source: salt://loghost/nginx.conf.template
+    - template: jinja
 
 elasticsearch_running:
   service.running:
@@ -110,9 +123,6 @@ elasticsearch_running:
       - file: /usr/local/etc/elasticsearch/elasticsearch.yml
       - file: /usr/local/etc/elasticsearch/logging.yml
       - file: /etc/rc.conf.d/elasticsearch
-
-nginx:
-  service.dead
 
 kibana_running:
   service.running:
@@ -129,3 +139,11 @@ fluentd_running:
     - watch:
       - file: /etc/rc.conf.d/fluentd
       - file: /usr/local/etc/fluentd/fluent.conf
+
+nginx_running:
+  service.running:
+    - restart: True
+    - name: nginx
+    - watch:
+      - file: /etc/rc.conf.d/nginx
+      - file: /usr/local/etc/nginx/nginx.conf

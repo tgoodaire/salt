@@ -12,7 +12,7 @@ IP Addresses:
 
 Roles
 {% for (host,hostdetail) in pillar.get('hosts', {}).items() -%}
-{% if host == grains['nodename'] and hostdetail.has_key('roles') -%}
+{% if host == grains['host'] and hostdetail.has_key('roles') -%}
 {% for role in hostdetail['roles'] -%}
   - {{ role }}
 {% endfor -%}

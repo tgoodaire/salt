@@ -1,5 +1,6 @@
 nrpe:
-  pkg.latest
+  pkg.latest:
+    - fromrepo: local
 
 nrpe_running:
   service.running:

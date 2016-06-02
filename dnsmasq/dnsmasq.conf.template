@@ -2,7 +2,7 @@ domain=killaz.localdomain
 expand-hosts
 local=/killaz.localdomain/
 
-listen-address={{ grains['ipv4'][0] }}
+listen-address={{ grains['ip'] }}
 bind-interfaces
 
 dns-forward-max=5000

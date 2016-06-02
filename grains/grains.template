@@ -1,0 +1,14 @@
+{% for host,hostdetail in pillar.get('hosts', {}).items() -%}
+{% if grains['host'] == host -%}
+  ip: {{ hostdetail['ip'] }}
+{% endif -%}
+{% endfor -%}
+{% for host,hostdetail in pillar.get('hosts', {}).items() -%}
+{% if 'roles' in hostdetail.keys() %}
+{% for role in hostdetail["roles"] -%}
+{% if grains['host'] == host %}
+{{ role }}: "True"
+{% endif -%}
+{% endfor -%}
+{% endif -%}
+{% endfor -%}

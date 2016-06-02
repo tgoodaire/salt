@@ -1,26 +1,22 @@
 # This state installs the tim user
 # as well as all of my favourite packages
 shells/zsh:
-  pkg.installed
+  pkg.latest
 
 vim:
-  pkg.installed
+  pkg.latest:
+    - fromrepo: local
 
 security/sudo:
-  pkg.installed
+  pkg.latest:
+    - fromrepo: local
 
 screen:
-  pkg.installed
+  pkg.latest:
+    - fromrepo: local
 
 git:
-  pkg.installed
-
-# FIXME: Only on jailhost
-#rsync:
-#  pkg.installed
-#
-#strace:
-#  pkg.installed
+  pkg.latest
 
 # User tim
 tim:
@@ -72,6 +68,11 @@ tim:
 /etc/periodic.conf:
   file.managed:
     - source: salt://files/system/periodic.conf
+    - user: root
+
+/etc/make.conf:
+  file.managed:
+    - source: salt://files/system/make.conf
     - user: root
 
 # User root

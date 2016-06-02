@@ -1,14 +1,14 @@
-/etc/ntp/ntp.conf:
+/etc/ntp.conf:
   file.managed:
-    - source: salt://files/system/ntp.conf
+    - source: salt://ntp/ntp.conf.template
     - user: root
     - group: wheel
 
 ntpd:
   service.running:
-    - reload: True
+    - restart: True
     - watch:
-      - file: /etc/ntp/ntp.conf
+      - file: /etc/ntp.conf
 
 /etc/rc.conf.d/ntpd:
   file.managed:
@@ -16,8 +16,3 @@ ntpd:
     - mode: 0644
     - source: salt://ntp/ntpd.template
 
-/etc/localtime:
-  file.managed:
-    - user: root
-    - mode: 0644
-    - source: salt://ntp/localtime.template

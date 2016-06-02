@@ -7,7 +7,7 @@
 sshd:
   service.running:
     - enable: True
-    - reload: True
+    - restart: True
     - watch:
       - file: /etc/ssh/sshd_config
 

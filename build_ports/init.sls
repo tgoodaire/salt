@@ -1,5 +1,5 @@
 synth just-build /usr/local/etc/buildlist:
   cmd.run
 
-synth update-repository:
+synth rebuild-repository:
   cmd.run

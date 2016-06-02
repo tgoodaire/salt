@@ -2,7 +2,8 @@
 #FIXME: Make sure that all applications (postgres, etc)
 #are logging to syslog.
 syslog-ng_installed:
-  pkg.installed:
+  pkg.latest:
+  - fromrepo: local
   - name: syslog-ng
 
 /usr/local/etc/syslog-ng.conf:
@@ -38,3 +39,9 @@ syslog-ng:
     - restart: True
     - watch:
       - file: /usr/local/etc/syslog-ng.conf
+
+/etc/localtime:
+  file.managed:
+    - user: root
+    - mode: 0644
+    - source: salt://logging/localtime.template

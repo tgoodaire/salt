@@ -6,6 +6,7 @@
 {% set jails=[] -%}
 {% set pgservers=[] -%}
 {% set nginxservers=[] -%}
+{% set nginxauthservers=[] -%}
 {% for (host,hostdetail) in pillar.get('hosts', {}).items() -%}
 define host{
     use                     basic-host
@@ -23,10 +24,13 @@ define host{
 {% if i=='jailhost' -%}
 {% do jailhosts.append(host) -%}
 {% endif -%}
-{% if i=='pkg_server' or i=='nagios' -%}
+{% if i=='pkg_server' -%}
 {% do nginxservers.append(host) -%}
 {% endif -%}
-{% if i=='postgres' -%}
+{% if i=='nagios' -%}
+{% do nginxauthservers.append(host) -%}
+{% endif -%}
+{% if i=='pgserver' -%}
 {% do pgservers.append(host) -%}
 {% endif -%}
 {% endfor -%}
@@ -115,3 +119,10 @@ define hostgroup{
     alias                   Nginx servers
     members                 {{ nginxservers|join(', ') }}
 }
+
+define hostgroup{
+    hostgroup_name          nginxauthservers
+    alias                   Nginx auth servers
+    members                 {{ nginxauthservers|join(', ') }}
+}
+
