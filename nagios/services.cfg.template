@@ -46,12 +46,13 @@ define service{
     check_command                   check_nrpe!check_swap
 }
 
-define service{
-    use                             service_template
-    hostgroup_name                  jailhosts
-    service_description             ntp
-    check_command                   check_nrpe!check_ntp_time
-}
+#FIXME: Ntp isn't running properly. :/
+#define service{
+#    use                             service_template
+#    hostgroup_name                  jailhosts
+#    service_description             ntp
+#    check_command                   check_nrpe!check_ntp_time
+#}
 
 #FIXME: Dns servers getting hammered...
 #define service{
@@ -75,12 +76,12 @@ define service{
     check_command                   check_nrpe!check_root
 }
 
-define service{
-    use                             service_template
-    hostgroup_name                  jailhosts
-    service_description             ntp
-    check_command                   check_nrpe!check_ntp_time
-}
+#define service{
+#    use                             service_template
+#    hostgroup_name                  jailhosts
+#    service_description             ntp
+#    check_command                   check_nrpe!check_ntp_time
+#}
 
 define service{
     use                             service_template

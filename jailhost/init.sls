@@ -1,3 +1,24 @@
+/etc/rc.conf.d/kld_list:
+  file.managed:
+    - user: root
+    - root: 0644
+    - source: salt://jailhost/kld_list.template
+
+/etc/rc.conf.d/sysctl:
+  file.managed:
+    - user: root
+    - root: 0644
+    - source: salt://jailhost/sysctl.template
+
+/etc/sysctl.conf:
+  file.managed:
+    - user: root
+    - root: 0644
+    - source: salt://jailhost/sysctl.conf.template
+
+/usr/local/bin/ezjail-admin update -P:
+  cmd.run
+
 /etc/rc.conf.d/jailhost:
   file.managed:
     - user: root

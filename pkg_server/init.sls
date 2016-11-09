@@ -1,11 +1,5 @@
-#include:
-#  - nginx
-
 nginx:
   pkg.latest
-
-#libxslt:
-#  pkg.latest
 
 /usr/local/etc/nginx/nginx.conf:
   file.managed:
@@ -124,8 +118,23 @@ synth:
 /usr/local/etc/pkg/repos/00_synth.conf:
   file.absent
 
+/usr/local/bin/synth just-build /usr/local/etc/buildlist:
+  cmd.run
+
+/usr/local/bin/synth rebuild-repository:
+  cmd.run
+
 /data:
   file.directory:
+    - user: www
+    - mode: 0755
+    - makedirs: True
+    - recurse:
+      - user
+
+Chown_pkgdirs:
+  file.directory:
+    - name: /var/synth
     - user: www
     - mode: 0755
     - makedirs: True

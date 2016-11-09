@@ -3,6 +3,7 @@
     - source: salt://sshd/sshd_config.template
     - user: root
     - group: wheel
+    - template: jinja
 
 sshd:
   service.running:

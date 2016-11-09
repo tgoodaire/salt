@@ -1,6 +1,8 @@
 interface: 192.168.1.200
 hash_type: sha256
-worker_threads: 15
+worker_threads: 10
+timeout: 30
+cli_summary: True
 
 fileserver_backend:
   - roots

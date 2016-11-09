@@ -10,7 +10,7 @@ IP Addresses:
   - {{ IP }}
 {% endfor -%}
 
-Roles
+Roles:
 {% for (host,hostdetail) in pillar.get('hosts', {}).items() -%}
 {% if host == grains['host'] and hostdetail.has_key('roles') -%}
 {% for role in hostdetail['roles'] -%}
@@ -18,6 +18,4 @@ Roles
 {% endfor -%}
 {% endif -%}
 {% endfor -%}
-
-(MOTD message generated at: {{ salt['cmd.run']('/bin/date') }})
 ------------------------------------------------------------------------------

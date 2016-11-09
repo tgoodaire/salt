@@ -2,7 +2,9 @@ databases/postgresql93-client
 databases/postgresql95-client
 databases/postgresql95-contrib
 databases/postgresql95-server
+devel/gettext-runtime
 devel/git
+devel/libedit
 devel/libffi
 devel/py-Jinja2
 devel/py-babel
@@ -21,6 +23,7 @@ devel/rubygem-yajl-ruby
 devel/strace
 dns/dnsmasq
 editors/vim
+ftp/curl
 lang/perl5.20
 lang/perl5.22
 lang/php56
@@ -33,16 +36,20 @@ net-mgmt/nagios4
 net-mgmt/nrpe
 net/libzmq4
 net/openpgm
+net/py-libcloud
 net/py-pyzmq
 net/rsync
 net/rubygem-http_parser.rb
 net/svnup
 net/tcpdump
+ports-mgmt/pkg_cutleaves
 ports-mgmt/synth
 security/ca_root_nss
+security/krb5
 security/libsodium
 security/nmap
 security/openssl
+security/p5-IO-Socket-SSL
 security/sshguard
 security/sudo
 shells/zsh
@@ -57,6 +64,7 @@ textproc/libxslt
 www/elinks
 www/fcgiwrap
 www/nginx
+www/py-requests
 www/spawn-fcgi
 x11-fonts/dejavu
 x11-toolkits/libXt

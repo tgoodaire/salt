@@ -1,12 +1,18 @@
-# FIXME: Should suggest if reboot needed or whatever
-#/boot/loader.conf:
-#  file.managed:
-#    - source: salt://files/system/loader.conf
-#    - user: root
-#    - group: wheel
+#FixME: Move all of these files into this dir
+
+/boot/loader.conf:
+  file.managed:
+    - source: salt://files/system/loader.conf
+    - user: root
+    - group: wheel
+
+/usr/src/sys/i386/conf/DAHMER:
+  file.managed:
+    - source: salt://files/system/DAHMER
+    - user: root
+    - group: wheel
 
 # rc.conf (rc.conf.local?)
-# sysctl.conf
 # ???
 # kldload tmpfs
 

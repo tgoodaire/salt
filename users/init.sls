@@ -1,13 +1,13 @@
 # This state installs the tim user
 # as well as all of my favourite packages
-shells/zsh:
+zsh:
   pkg.latest
 
 vim:
   pkg.latest:
     - fromrepo: local
 
-security/sudo:
+sudo:
   pkg.latest:
     - fromrepo: local
 
@@ -17,6 +17,10 @@ screen:
 
 git:
   pkg.latest
+
+pkg_cutleaves:
+  pkg.latest:
+    - fromrepo: local
 
 # User tim
 tim:

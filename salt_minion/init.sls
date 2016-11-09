@@ -16,3 +16,8 @@ salt_minion:
     - user: root
     - mode: 0644
     - source: salt://salt_minion/salt_minion.template
+
+/usr/sbin/service salt_minion start > /dev/null 2>&1:
+  cron.present:
+    - user: root
+    - minute: '*/5'
