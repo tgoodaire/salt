@@ -1,0 +1,128 @@
+# Other groups
+# Postgres
+# Nginx
+{% set freebsdservers=[] -%}
+{% set jailhosts=[] -%}
+{% set jails=[] -%}
+{% set pgservers=[] -%}
+{% set nginxservers=[] -%}
+{% set nginxauthservers=[] -%}
+{% for (host,hostdetail) in pillar.get('hosts', {}).items() -%}
+define host{
+    use                     basic-host
+    host_name               {{ host }}
+    alias                   {{ host }}
+    address                 {{ hostdetail['ip'] }}
+}
+
+{% do freebsdservers.append(host) -%}
+{% if 'jailhost' in hostdetail.keys() -%}
+{% do jails.append(host) -%}
+{% endif -%}
+{% if 'roles' in hostdetail.keys() -%}
+{% for (i) in hostdetail.get('roles') -%}
+{% if i=='jailhost' -%}
+{% do jailhosts.append(host) -%}
+{% endif -%}
+{% if i=='pkg_server' -%}
+{% do nginxservers.append(host) -%}
+{% endif -%}
+{% if i=='nagios' -%}
+{% do nginxauthservers.append(host) -%}
+{% endif -%}
+{% if i=='pgserver' -%}
+{% do pgservers.append(host) -%}
+{% endif -%}
+{% endfor -%}
+{% endif -%}
+{% endfor -%}
+
+# FIXME: Add these magically, somehow
+# Make everything salted?
+define host{
+    use                     basic-host
+    host_name               router
+    alias                   router
+    address                 192.168.1.1
+}
+
+define host{
+    use                     basic-host
+    host_name               pi-tim
+    alias                   pi-tim
+    address                 192.168.1.103
+}
+
+define host{
+    use                     basic-host
+    host_name               pi-sarah
+    alias                   pi-sarah
+    address                 192.168.1.104
+}
+
+
+define host{
+    name                            generic-host    ; Generic template name
+    notifications_enabled           1               ; Host notifications are enabled
+    event_handler_enabled           1               ; Host event handler is enabled
+    flap_detection_enabled          1               ; Flap detection is enabled
+    process_perf_data               1               ; Process performance data
+    retain_status_information       1               ; Retain status information across program restarts
+    retain_nonstatus_information    1               ; Retain non-status information across program restarts
+    register                        0               ; DONT REGISTER THIS DEFINITION - ITS NOT A REAL HOST, JUST A TEMPLATE!
+    contacts                        tim
+    check_interval                  300
+    retry_interval                  30
+    notification_interval           60
+}
+
+define host{
+    name                    basic-host
+    use                     generic-host
+    check_command           check-host-alive
+    max_check_attempts      15
+    register                0
+}
+
+define hostgroup{
+    hostgroup_name          misc
+    alias                   Misc
+    members                 router,pi-sarah,pi-tim
+}
+
+define hostgroup{
+    hostgroup_name          freebsd-servers
+    alias                   FreeBSD Servers
+    members                 {{ freebsdservers|join(', ') }}
+}
+
+define hostgroup{
+    hostgroup_name          jailhosts
+    alias                   FreeBSD Jail Hosts
+    members                 {{ jailhosts|join(', ') }}
+}
+
+define hostgroup{
+    hostgroup_name          jails
+    alias                   FreeBSD Jails
+    members                 {{ jails|join(', ') }}
+}
+
+define hostgroup{
+    hostgroup_name          pgservers
+    alias                   Postgres servers
+    members                 {{ pgservers|join(', ') }}
+}
+
+define hostgroup{
+    hostgroup_name          nginxservers
+    alias                   Nginx servers
+    members                 {{ nginxservers|join(', ') }}
+}
+
+define hostgroup{
+    hostgroup_name          nginxauthservers
+    alias                   Nginx auth servers
+    members                 {{ nginxauthservers|join(', ') }}
+}
+

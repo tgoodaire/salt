@@ -1,0 +1,14 @@
+FREEBSD_HOST=http://ftp.freebsd.org
+RESOLV_CONF=/etc/resolv.conf
+BASEFS=/usr/local/poudriere
+POUDRIERE_DATA=/data/lake/poudriere
+USE_PORTLINT=no
+USE_TMPFS=yes
+DISTFILES_CACHE=/usr/ports/distfiles
+CHECK_CHANGED_DEPS=yes
+# Edit this according to your VPS' CPU.
+PARALLEL_JOBS=4
+CHECK_CHANGED_OPTIONS=verbose
+CHECK_CHANGED_DEPS=yes
+SAVE_WRKDIR=yes
+NOLINUX=yes

@@ -1,0 +1,2 @@
+fcgiwrap_enable="YES"
+fcgiwrap_user="www"
