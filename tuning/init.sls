@@ -33,3 +33,10 @@ svnup:
     - source: salt://files/system/svnup.conf
     - user: root
     - group: wheel
+
+/etc/freebsd-update.conf:
+  file.managed:
+    - source: salt://files/system/freebsd-update.conf
+    - user: root
+    - group: wheel
+

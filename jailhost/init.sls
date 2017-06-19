@@ -16,8 +16,10 @@
     - root: 0644
     - source: salt://jailhost/sysctl.conf.template
 
-/usr/local/bin/ezjail-admin update -P:
-  cmd.run
+# FIXME: Don't want to do this all the damn time.
+# Maybe cron it?
+#/usr/local/bin/ezjail-admin update -P:
+#  cmd.run
 
 /etc/rc.conf.d/jailhost:
   file.managed:
@@ -47,7 +49,8 @@ ezjail_running:
 /data:
   file.directory:
     - user: root
-    - mode: 0644
+    - group: wheel
+    - mode: 0755
     - makedirs: True
 
 /usr/local/bin/destroy_jails.sh:

@@ -29,3 +29,6 @@
     - user: root
     - mode: 0644
     - source: salt://pkg_client/FreeBSD.conf.template
+
+pkg update:
+  cmd.run

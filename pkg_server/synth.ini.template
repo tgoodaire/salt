@@ -20,5 +20,4 @@ Max_jobs_per_builder= 2
 Tmpfs_workdir= true
 Tmpfs_localbase= true
 Display_with_ncurses= false
-leverage_prebuilt= false
-
+leverage_prebuilt= true

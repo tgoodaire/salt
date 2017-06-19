@@ -11,4 +11,3 @@ include:
   - sshd
   - motd
   - ssmtp
-  - nrpe

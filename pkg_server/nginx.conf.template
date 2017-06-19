@@ -18,7 +18,7 @@ http {
     server {
         listen       80;
         server_name  {{ grains['fqdn'] }};
-        root /var/synth/live_packages;
+        root /data/poudriere/packages/poudriere-default;
 
         location / {
             autoindex on;

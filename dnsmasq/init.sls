@@ -1,5 +1,5 @@
 dnsmasq:
-  pkg.latest
+  pkg.installed
 
 /usr/local/etc/dnsmasq.conf.d:
   file.directory:

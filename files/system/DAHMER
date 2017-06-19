@@ -1,30 +1,10 @@
-#
-# GENERIC -- Generic kernel configuration file for FreeBSD/i386
-#
-# For more information on this file, please read the config(5) manual page,
-# and/or the handbook section on Kernel Configuration Files:
-#
-#    http://www.FreeBSD.org/doc/en_US.ISO8859-1/books/handbook/kernelconfig-config.html
-#
-# The handbook is also available locally in /usr/share/doc/handbook
-# if you've installed the doc distribution, otherwise always see the
-# FreeBSD World Wide Web server (http://www.FreeBSD.org/) for the
-# latest information.
-#
-# An exhaustive list of options and more detailed explanations of the
-# device lines is also present in the ../../conf/NOTES and NOTES files.
-# If you are in doubt as to the purpose or necessity of a line, check first
-# in NOTES.
-#
-# $FreeBSD: releng/11.0/sys/i386/conf/GENERIC 302410 2016-07-08 00:22:14Z gjb $
-
-cpu		I486_CPU
-cpu		I586_CPU
+#cpu		I486_CPU
+#cpu		I586_CPU
 cpu		I686_CPU
-ident		DAHMER
+ident	DAHMER
 
 #makeoptions	DEBUG=-g		# Build kernel with gdb(1) debug symbols
-makeoptions	WITH_CTF=1		# Run ctfconvert(1) for DTrace support
+#makeoptions	WITH_CTF=1		# Run ctfconvert(1) for DTrace support
 
 options 	SCHED_ULE		# ULE scheduler
 options 	PREEMPTION		# Enable kernel thread preemption
@@ -40,10 +20,10 @@ options 	UFS_DIRHASH		# Improve performance on big directories
 options 	UFS_GJOURNAL		# Enable gjournal-based UFS journaling
 options 	QUOTA			# Enable disk quotas for UFS
 options 	MD_ROOT			# MD is a potential root device
-options 	NFSCL			# Network Filesystem Client
-options 	NFSD			# Network Filesystem Server
-options 	NFSLOCKD		# Network Lock Manager
-options 	NFS_ROOT		# NFS usable as /, requires NFSCL
+#options 	NFSCL			# Network Filesystem Client
+#options 	NFSD			# Network Filesystem Server
+#options 	NFSLOCKD		# Network Lock Manager
+#options 	NFS_ROOT		# NFS usable as /, requires NFSCL
 options 	MSDOSFS			# MSDOS Filesystem
 options 	CD9660			# ISO 9660 Filesystem
 options 	PROCFS			# Process filesystem (requires PSEUDOFS)
@@ -51,10 +31,10 @@ options 	PSEUDOFS		# Pseudo-filesystem framework
 options 	GEOM_PART_GPT		# GUID Partition Tables.
 options 	GEOM_RAID		# Soft RAID functionality.
 options 	GEOM_LABEL		# Provides labelization
-options 	COMPAT_FREEBSD4		# Compatible with FreeBSD4
-options 	COMPAT_FREEBSD5		# Compatible with FreeBSD5
-options 	COMPAT_FREEBSD6		# Compatible with FreeBSD6
-options 	COMPAT_FREEBSD7		# Compatible with FreeBSD7
+#options 	COMPAT_FREEBSD4		# Compatible with FreeBSD4
+#options 	COMPAT_FREEBSD5		# Compatible with FreeBSD5
+#options 	COMPAT_FREEBSD6		# Compatible with FreeBSD6
+#options 	COMPAT_FREEBSD7		# Compatible with FreeBSD7
 options 	COMPAT_FREEBSD9		# Compatible with FreeBSD9
 options 	COMPAT_FREEBSD10	# Compatible with FreeBSD10
 options 	SCSI_DELAY=5000		# Delay (in ms) before probing SCSI
@@ -360,7 +340,7 @@ device		sdhci			# Generic PCI SD Host Controller
 #device		virtio_balloon		# VirtIO Memory Balloon device
 
 # HyperV drivers and enchancement support
-#device		hyperv			# HyperV drivers 
+#device		hyperv			# HyperV drivers
 
 # Xen HVM Guest Optimizations
 # NOTE: XENHVM depends on xenpci.  They must be added or removed together.
